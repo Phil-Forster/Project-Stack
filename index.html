@@ -1,43 +1,34 @@
 ﻿<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- Essentials -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- Title & description -->
   <title>Project Scaffold Dashboard</title>
   <meta name="description" content="Local folder and file scaffold generator with live preview, template catalog, and PowerShell export." />
   <meta name="author" content="Phil Forster" />
 
-  <!-- Appearance -->
   <meta name="theme-color" content="#0e0f13" />
 
-  <!-- Fonts (preconnect + swap to avoid blocking text) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link id="gf" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Inter:wght@400;500;600&display=swap" media="print">
 
-  <!-- Styles: preload + regular stylesheet (CSP-safe, no onload handler) -->
   <link rel="preload" href="css/style.css" as="style" />
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Icons -->
   <link rel="icon" href="icons/favicon.ico">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Project Scaffold Dashboard" />
   <meta property="og:description" content="Generate structured project scaffolds instantly with live previews." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="icons/preview.webp" />
 
-  <!-- Security -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self'; connect-src 'self';" />
 
-  <!-- Scripts: move to head with defer (download early, execute after parse) -->
   <script src="js/generator.js" defer></script>
   <script src="js/app.js" defer></script>
 </head>
@@ -53,10 +44,8 @@
   </header>
 
   <main class="grid" id="main" role="main">
-    <!-- Accessible skip link (discernible name) -->
     <a id="top" href="#main" class="visually-hidden-focusable">Skip to main content</a>
 
-    <!-- Left: Inputs (spans two columns) -->
     <section class="panel panel-inputs">
       <h2 class="panel-title">Inputs</h2>
 
@@ -98,7 +87,6 @@
         </div>
       </div>
 
-      <!-- Grouped, colored catalog -->
       <details class="box" open>
         <summary class="summary">Catalog (grouped by type)</summary>
         <div id="catalogGroups" class="picker picker-groups"><!-- JS fills --></div>
@@ -117,12 +105,10 @@
       </details>
     </section>
 
-    <!-- Right: Live Preview + Script & Console -->
     <section class="panel panel-right">
       <h2 class="panel-title">Live Preview</h2>
       <div id="treePreview" class="tree" aria-live="polite"></div>
 
-      <!-- Template preview panel -->
       <div id="templatePreview" class="tpl-preview" aria-live="polite"></div>
 
       <div class="actions">
@@ -132,7 +118,6 @@
 
       <h2 class="panel-title">Script & Console</h2>
 
-      <!-- Proper label association for textarea -->
       <label class="label" for="scriptOutput">PowerShell Script Preview</label>
       <textarea id="scriptOutput" class="codearea tall" readonly spellcheck="false" aria-describedby="scriptHelp"></textarea>
       <small id="scriptHelp" class="visually-hidden">Read-only preview of the generated PowerShell script.</small>
@@ -142,7 +127,6 @@
         <button id="downloadBtn" class="btn" type="button">Download .ps1</button>
       </div>
 
-      <!-- Use heading + role=log instead of label -->
       <h3 class="label" id="consoleLabel">Console Log</h3>
       <pre id="console" class="console" role="log" aria-live="polite" aria-labelledby="consoleLabel"></pre>
     </section>
