@@ -1,0 +1,263 @@
+﻿{
+  "templates": [
+    {
+      "label": "Minimal HTML Starter",
+      "description": "Lean static site: core pages, single CSS/JS, favicons and robots.",
+      "folders": ["assets","images","css","js","docs"],
+      "files": [
+        "index.html","about.html","contact.html","privacy.html","terms.html","404.html",
+        "css/reset.css","css/style.css","css/variables.css",
+        "js/main.js",
+        "images/logo.webp","images/favicon.webp","robots.txt","humans.txt","README.md",
+        ".editorconfig",".gitignore"
+      ]
+    },
+    {
+      "label": "Vanilla SPA",
+      "description": "Single-page app with router, UI components, storage, theming.",
+      "folders": ["assets","images","css","css/components","css/themes","js","js/components","js/modules","js/utils","data","docs"],
+      "files": [
+        "index.html",
+        "css/reset.css","css/style.css","css/variables.css","css/utilities.css","css/dark.css","css/light.css",
+        "js/app.js","js/main.js","js/router.js","js/ui.js","js/helpers.js","js/storage.js","js/theme.js","js/api.js",
+        "data/settings.json","data/manifest.json",
+        "images/logo.webp","images/hero.webp",
+        "README.md",".editorconfig",".gitignore"
+      ]
+    },
+    {
+      "label": "Photography Portfolio (Static)",
+      "description": "Portfolio pages + gallery structure, tokens, and placeholders.",
+      "folders": ["assets","images","images/gallery","images/backgrounds","css","css/components","css/layouts","css/tokens","js","js/components","data","docs"],
+      "files": [
+        "index.html","about.html","contact.html","privacy.html","terms.html",
+        "css/reset.css","css/style.css","css/variables.css","css/utilities.css",
+        "js/main.js","js/ui.js","js/theme.js",
+        "data/manifest.json","data/localization.json",
+        "images/logo.webp","images/placeholder.webp","images/hero.webp",
+        "docs/README.md","robots.txt",".gitignore",".editorconfig"
+      ]
+    },
+    {
+      "label": "Docs Site",
+      "description": "Documentation-first site with structured markdown content.",
+      "folders": ["assets","docs","docs/api","docs/specs","docs/assets","css","js","images"],
+      "files": [
+        "index.html",
+        "docs/README.md","docs/API_REFERENCE.md","docs/CHANGELOG.md","docs/CONTRIBUTING.md","docs/LICENSE.md",
+        "css/reset.css","css/style.css","css/variables.css",
+        "js/main.js",
+        "images/logo.webp",
+        "robots.txt",".gitignore",".editorconfig"
+      ]
+    },
+    {
+      "label": "PHP — Public + API",
+      "description": "Public site with API endpoints and includes structure.",
+      "folders": ["public","api","includes","templates","config","classes","assets","images","css","js","data","docs"],
+      "files": [
+        "public/index.php","api/index.php",
+        "includes/config.php","includes/session_bootstrap.php","includes/security.php","includes/functions.php",
+        ".htaccess","config.php",
+        "css/reset.css","css/style.css",
+        "js/main.js",
+        "data/settings.json","data/manifest.json",
+        "images/logo.webp",
+        "README.md",".editorconfig",".gitignore"
+      ]
+    },
+    {
+      "label": "Static + Build Tools",
+      "description": "Static site with build/deploy scripts and CI placeholders.",
+      "folders": ["assets","images","css","js","data","docs","scripts","scripts/build","scripts/deploy","tools","bin","ci",".github/workflows"],
+      "files": [
+        "index.html","about.html","contact.html",
+        "css/reset.css","css/style.css","css/variables.css",
+        "js/main.js",
+        "data/manifest.json",
+        "images/logo.webp",
+        "scripts/build.sh","scripts/deploy.sh","scripts/bundle.ps1","scripts/run-tests.ps1",
+        "tools/optimize-images.js","bin/postinstall",
+        ".nvmrc",".npmrc",".gitignore",".editorconfig","README.md"
+      ]
+    },
+    {
+      "label": "Node Tooling (Vite/Webpack)",
+      "description": "Front-end app scaffold with full Node tooling.",
+      "folders": ["src","dist","public","assets","images","css","js","data","docs","scripts",".vscode",".github/workflows"],
+      "files": [
+        "index.html","public/index.html",
+        "css/style.css","js/main.js",
+        "data/manifest.json",
+        "images/logo.webp",
+        "package.json","package-lock.json","vite.config.js","webpack.config.js","tsconfig.json",".env.example",
+        ".editorconfig",".prettierrc",".eslintrc.json",".gitignore",
+        "scripts/build.sh","scripts/deploy.sh",
+        "docs/README.md"
+      ]
+    },
+    {
+      "label": "PHP Admin + Public (JSON CMS)",
+      "description": "PHP site with JSON content pipeline and admin-ready structure.",
+      "folders": ["public","api","includes","templates","config","assets","images","css","js","data","data/collections","docs"],
+      "files": [
+        "public/index.php","api/index.php",
+        "includes/config.php","includes/session_bootstrap.php","includes/functions.php",".htaccess",
+        "css/style.css","css/variables.css",
+        "js/main.js","js/theme.js",
+        "data/settings.json","data/catalog.json","data/projects.json","data/users.json",
+        "images/logo.webp",
+        "README.md",".gitignore",".editorconfig"
+      ]
+    },
+    {
+      "label": "Landing Page — Fast Deploy",
+      "description": "Single-page deployable site with script hooks.",
+      "folders": ["assets","images","css","js","scripts","docs"],
+      "files": [
+        "index.html",
+        "css/reset.css","css/style.css",
+        "js/main.js",
+        "images/hero.webp","images/logo.webp",
+        "scripts/deploy.sh","scripts/deploy.ps1",
+        "robots.txt","README.md",".gitignore",".editorconfig"
+      ]
+    },
+    {
+      "label": "Micro-Site (Ultra Minimal)",
+      "description": "Tiny footprint for very small projects or placeholders.",
+      "folders": ["css","js","images"],
+      "files": [
+        "index.html",
+        "css/style.css",
+        "js/main.js",
+        "images/logo.webp",
+        ".gitignore"
+      ]
+    },
+    {
+      "label": "Marketing Site",
+      "description": "Multi-page marketing site with layout components.",
+      "folders": ["assets","images","css","css/layouts","js","js/components","docs"],
+      "files": [
+        "index.html","about.html","contact.html","privacy.html","terms.html",
+        "css/style.css","css/layouts/header.css","css/layouts/footer.css",
+        "js/main.js","js/ui.js",
+        "images/hero.webp","images/logo.webp",
+        "README.md"
+      ]
+    },
+    {
+      "label": "Component Library (CSS/JS)",
+      "description": "Reusable UI kits and utilities for rapid prototyping.",
+      "folders": ["css","css/components","css/utilities","js","js/components","docs"],
+      "files": [
+        "index.html",
+        "css/style.css","css/components/buttons.css","css/components/cards.css","css/utilities.css",
+        "js/main.js","js/components/modal.js","js/components/dropdown.js",
+        "README.md"
+      ]
+    },
+    {
+      "label": "JSON-Driven SPA",
+      "description": "SPA with dynamic content powered entirely by JSON config/data.",
+      "folders": ["css","js","js/modules","js/utils","data","data/config","data/collections","images","docs"],
+      "files": [
+        "index.html",
+        "css/style.css","css/dark.css",
+        "js/app.js","js/router.js","js/api.js","js/storage.js",
+        "data/settings.json","data/catalog.json","data/localization.json","data/projects.json",
+        "images/logo.webp",
+        "README.md"
+      ]
+    },
+    {
+      "label": "Content-Heavy Site",
+      "description": "Multiple static pages and structured content directories.",
+      "folders": ["assets","images","images/backgrounds","css","css/layouts","js","docs","docs/specs"],
+      "files": [
+        "index.html","about.html","contact.html","privacy.html","terms.html","404.html","sitemap.html",
+        "css/style.css","css/layouts/page.css",
+        "js/main.js",
+        "images/logo.webp","images/hero.webp",
+        "docs/README.md","docs/specs/site-structure.md"
+      ]
+    },
+    {
+      "label": "Utility Toolkit",
+      "description": "Developer utility-first workspace: scripts + configs.",
+      "folders": ["scripts","scripts/tools","tools","bin","docs"],
+      "files": [
+        "scripts/build.sh","scripts/deploy.sh","scripts/watch.sh",
+        "scripts/lint.ps1","scripts/run-tests.ps1","scripts/setup.ps1",
+        "tools/optimize-images.js",
+        "bin/postinstall",
+        ".npmrc",".nvmrc",".gitignore","README.md"
+      ]
+    },
+    {
+      "label": "Design System Seed",
+      "description": "Seed repo for building a full design system.",
+      "folders": ["css","css/tokens","css/base","css/components","css/themes","docs","images"],
+      "files": [
+        "index.html",
+        "css/variables.css","css/tokens/colors.css","css/tokens/spacing.css","css/base/reset.css","css/themes/dark.css","css/themes/light.css",
+        "docs/README.md",
+        "images/logo.webp"
+      ]
+    },
+    {
+      "label": "Frontend Prototype Lab",
+      "description": "Experimental prototyping base with flexible layouts.",
+      "folders": ["css","css/components","css/layouts","js","js/utils","images","data","docs"],
+      "files": [
+        "index.html",
+        "css/style.css","css/components/cards.css","css/layouts/grid.css",
+        "js/main.js","js/helpers.js",
+        "data/settings.json",
+        "images/logo.webp","images/placeholder.webp",
+        "README.md"
+      ]
+    },
+    {
+      "label": "API Mock Server (JSON)",
+      "description": "Local mock API powered entirely by JSON files.",
+      "folders": ["api","data","data/collections","data/config","docs"],
+      "files": [
+        "api/index.php",
+        "data/settings.json","data/users.json","data/projects.json","data/catalog.json",
+        "docs/README.md",
+        ".gitignore"
+      ]
+    },
+    {
+      "label": "Progressive Web App (PWA) Basic",
+      "description": "PWA structure with manifest, service worker, and assets.",
+      "folders": ["assets","images","css","js","js/modules","data","docs"],
+      "files": [
+        "index.html",
+        "manifest.json",
+        "css/style.css","css/utilities.css",
+        "js/main.js","js/app.js","js/router.js",
+        "data/settings.json","data/manifest.json",
+        "images/logo.webp","images/hero.webp",
+        "README.md",".gitignore"
+      ]
+    },
+    {
+      "label": "Full SPA + API",
+      "description": "Large SPA with templates, API endpoints, and full data sets.",
+      "folders": ["public","api","templates","css","css/components","js","js/modules","js/utils","data","data/collections","images","docs"],
+      "files": [
+        "public/index.php","api/index.php",
+        "templates/layouts","templates/partials",
+        "index.html",
+        "css/style.css","css/components/cards.css",
+        "js/app.js","js/main.js","js/router.js","js/ui.js","js/api.js","js/storage.js",
+        "data/settings.json","data/catalog.json","data/localization.json",
+        "images/logo.webp","images/hero.webp",
+        "README.md",".editorconfig",".gitignore"
+      ]
+    }
+  ]
+}

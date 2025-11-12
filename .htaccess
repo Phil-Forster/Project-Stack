@@ -1,0 +1,127 @@
+# ===========================================
+# Project Scaffold — .htaccess (Prod baseline)
+# Caching + Compression + Security Headers
+# Hostinger/Apache-friendly
+# ===========================================
+
+# ----- Apache hardening (safe) -----
+ServerTokens Prod
+ServerSignature Off
+
+# ----- MIME types -----
+<IfModule mod_mime.c>
+  AddType image/webp                                   .webp
+  AddType image/avif                                   .avif
+  AddType image/svg+xml                                .svg
+  AddType application/manifest+json                    .webmanifest .manifest
+  AddType font/woff2                                   .woff2
+</IfModule>
+
+# ----- Compression -----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ----- Expires / Caching -----
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML should not be cached aggressively
+  ExpiresByType text/html                              "access plus 0 seconds"
+
+  # JSON that may change (e.g., /data/templates/templates.json)
+  ExpiresByType application/json                       "access plus 1 hour"
+
+  # Static assets (use filename versioning for cache busting)
+  ExpiresByType text/css                               "access plus 1 year"
+  ExpiresByType text/javascript                        "access plus 1 year"
+  ExpiresByType application/javascript                 "access plus 1 year"
+  ExpiresByType image/svg+xml                          "access plus 1 year"
+  ExpiresByType image/webp                             "access plus 1 year"
+  ExpiresByType image/avif                             "access plus 1 year"
+  ExpiresByType image/png                              "access plus 1 year"
+  ExpiresByType image/jpeg                             "access plus 1 year"
+  ExpiresByType image/gif                              "access plus 1 year"
+  ExpiresByType font/woff2                             "access plus 1 year"
+
+  # PWA manifest — tiny + stable
+  ExpiresByType application/manifest+json              "access plus 1 year"
+</IfModule>
+
+# ----- Cache-Control / misc headers -----
+<IfModule mod_headers.c>
+  # HTML — no cache
+  <FilesMatch "\.(html?|php)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+  </FilesMatch>
+
+  # JSON configs that change more often (adjust if needed)
+  <FilesMatch "\.json$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+
+  # True static (versioned filenames recommended)
+  <FilesMatch "\.(css|js|mjs|svg|png|jpe?g|gif|webp|avif|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Fonts CORS (only needed if you self-host fonts and use crossorigin)
+  <FilesMatch "\.(woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+
+  # Correct manifest content type (belt & braces)
+  <FilesMatch "\.(webmanifest|manifest)$">
+    Header set Content-Type "application/manifest+json; charset=utf-8"
+  </FilesMatch>
+
+  # -------------------------
+  # Security Headers
+  # -------------------------
+
+  # 1) HSTS (HTTPS required) — enable only when you have valid HTTPS everywhere
+  #    Add 'preload' once you’re confident; submit your domain to hstspreload.org afterwards.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+
+  # 2) X-Content-Type-Options — block MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # 3) X-Frame-Options — prevent clickjacking (change to DENY if you never need iframes)
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # 4) Referrer-Policy — good privacy + analytics compatibility
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # 5) Permissions-Policy — disable powerful features you don’t use
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), fullscreen=(self), clipboard-read=(self), clipboard-write=(self)"
+
+  # 6) Cross-Origin policies (conservative and safe)
+  #    These affect *resources you serve* from this origin.
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  # Avoid COEP unless you need SharedArrayBuffer or wasm threading (can break embeds).
+  # Header always set Cross-Origin-Embedder-Policy "require-corp"
+
+  # 7) Disallow Flash/Adobe cross-domain (legacy hardening)
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+
+  # 8) Content-Security-Policy
+  # ------------------------------------------------
+  # Variant A — CURRENT (Google Fonts allowed)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
+
+  # Variant B — TIGHT (self-host fonts; comment Variant A above and uncomment this)
+  # Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
+</IfModule>
+
+# Optional: rewrite HTTP->HTTPS (Hostinger may manage this already)
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} !=on
+#   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# </IfModule>
+
+# Optional: simplify/disable ETags
+# FileETag None
