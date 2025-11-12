@@ -284,3 +284,31 @@ button.btn:focus-visible, a.btn:focus-visible {
   outline: 2px solid var(--btn-ring);
   outline-offset: 2px;
 }
+/* allow the row to wrap cleanly and give the trigger its own line */
+.row{ display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; } /* keep existing props, add wrap */
+
+@media (max-width: 900px){
+  #openTemplatePicker{
+    flex: 1 0 100%;
+    order: 2;             /* ensure it drops below the select + reload */
+    margin-top: 8px;
+  }
+  .tp-card h3 { font-size: 0.95rem; }
+}
+/* friendlier tablet columns + better fill behavior */
+.tp-grid{
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* still collapse to a single column on narrow phones (you already do this at 520px) */
+@media (max-width:520px){
+  .tp-grid{ grid-template-columns: 1fr; }
+}
+.tp-modal{ overscroll-behavior: contain; }
+.tp-dialog{ overscroll-behavior: contain; }
+.tpl-pill{
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--cat) 55%, var(--hair));
+  background: color-mix(in oklab, var(--card) 70%, var(--cat) 22%);
+}
