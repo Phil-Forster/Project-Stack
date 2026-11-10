@@ -1,0 +1,159 @@
+﻿<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Project Scaffold Dashboard</title>
+  <meta name="description" content="Local folder and file scaffold generator with live preview, template catalog, and PowerShell export." />
+  <meta name="author" content="Phil Forster" />
+
+  <meta name="theme-color" content="#0e0f13" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link id="gf" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Inter:wght@400;500;600&display=swap" media="print">
+
+  <link rel="preload" href="css/style.css" as="style" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="icon" href="icons/favicon.ico">
+
+  <meta property="og:title" content="Project Scaffold Dashboard" />
+  <meta property="og:description" content="Generate structured project scaffolds instantly with live previews." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="icons/preview.webp" />
+
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self'; connect-src 'self';" />
+
+  <script src="js/generator.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="brand">Project Scaffold Dashboard</h1>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn ghost" type="button" aria-label="Toggle theme">Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid" id="main" role="main">
+    <a id="top" href="#main" class="visually-hidden-focusable">Skip to main content</a>
+
+    <section class="panel panel-inputs">
+      <h2 class="panel-title">Inputs</h2>
+
+      <label class="label" for="rootPath">Target root path</label>
+      <div class="row">
+        <div class="col">
+          <input id="rootPath" class="input" type="text" placeholder="" />
+        </div>
+        <div class="col-right">
+          <button id="browseFolder" class="btn small" type="button">Browse…</button>
+          <button id="newFolder" class="btn small" type="button">New folder…</button>
+        </div>
+      </div>
+
+      <div id="rootStatus" class="label" aria-live="polite"></div>
+
+      <div class="row">
+        <div class="col">
+          <label class="label" for="templateSelect">Template</label>
+          <select id="templateSelect" class="input"></select>
+        </div>
+        <div class="col-right">
+          <button id="reloadTemplates" class="btn small" type="button" aria-label="Reload template list">Reload</button>
+        </div>
+
+        <button id="openTemplatePicker" class="btn" type="button">Browse Templates</button>
+
+        <div id="templateModal" class="tp-modal" aria-hidden="true">
+          <div class="tp-backdrop" data-close="true"></div>
+
+          <div class="tp-dialog" role="dialog" aria-modal="true" aria-labelledby="tpTitle">
+            <div class="tp-head">
+              <h2 id="tpTitle">Choose a Template</h2>
+              <button id="tpClose" class="tp-close" type="button" aria-label="Close picker">×</button>
+            </div>
+
+            <div id="tpGrid" class="tp-grid" role="list"></div>
+          </div>
+        </div>
+      </div>
+
+      <details class="box" open>
+        <summary class="summary">Catalog (grouped by type)</summary>
+        <div id="catalogGroups" class="picker picker-groups"><!-- JS fills --></div>
+      </details>
+
+      <details class="box">
+        <summary class="summary">Options</summary>
+        <label class="check">
+          <input type="checkbox" id="includeTreeCmd" checked />
+          <span>Include <code>tree . /f</code> verification at end</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="dryRunOnly" />
+          <span>Commented “dry-run” header (visual only)</span>
+        </label>
+      </details>
+    </section>
+
+    <section class="panel panel-right">
+      <h2 class="panel-title">Live Preview</h2>
+      <div id="treePreview" class="tree" aria-live="polite"></div>
+
+      <div id="templatePreview" class="tpl-preview" aria-live="polite"></div>
+
+      <div class="actions">
+        <button id="generateBtn" class="btn primary" type="button">Generate PowerShell Script</button>
+        <button id="resetBtn" class="btn" type="button">Reset</button>
+      </div>
+
+      <h2 class="panel-title">Script & Console</h2>
+
+      <label class="label" for="scriptOutput">PowerShell Script Preview</label>
+      <textarea id="scriptOutput" class="codearea tall" readonly spellcheck="false" aria-describedby="scriptHelp"></textarea>
+      <small id="scriptHelp" class="visually-hidden">Read-only preview of the generated PowerShell script.</small>
+
+      <div class="actions">
+        <button id="copyBtn" class="btn" type="button">Copy</button>
+        <button id="downloadBtn" class="btn" type="button">Download .ps1</button>
+      </div>
+
+      <h3 class="label" id="consoleLabel">Console Log</h3>
+      <pre id="console" class="console" role="log" aria-live="polite" aria-labelledby="consoleLabel"></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div class="footer-left">
+        <small>© <span id="y"></span>
+          <a href="https://philforster.co.uk" target="_blank" rel="noopener">Phil Forster</a>
+        </small>
+      </div>
+
+      <div class="footer-center">
+        <p class="site-disclaimer">
+          This tool runs entirely on your device. Nothing is uploaded, stored remotely, or tracked. Your selections, project data, and paths remain private.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <button id="backToTop" class="to-top" type="button" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
